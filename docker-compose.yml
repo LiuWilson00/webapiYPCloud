@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+    web-api:
+        build: .
+        image: web/webapi
+        port: 3000:3000
+        container_name: webapi
+        hostname: webapi
+        network_mode: host
+        restart: always
+    
