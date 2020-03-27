@@ -37,4 +37,64 @@ router.post('/upload-avatar', async (req, res) => {
   }
 });
 
+router.post('/upload-yolo', async (req, res) => {
+  try {
+    if (!req.files) {
+      res.send({
+        status: false,
+        message: 'No file uploaded'
+      });
+    } else {
+
+      let yoloImg = req.files.yoloImg;
+
+
+      avatar.mv('./public/images/yolo' + yoloImg.name);
+
+
+      res.send({
+        status: true,
+        message: 'File is uploaded',
+        data: {
+          name: yoloImg.name,
+          mimetype: yoloImg.mimetype,
+          size: yoloImg.size
+        }
+      });
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+router.post('/upload-tagImg', async (req, res) => {
+  try {
+    if (!req.files) {
+      res.send({
+        status: false,
+        message: 'No file uploaded'
+      });
+    } else {
+
+      let yoloImg = req.files.yoloImg;
+
+
+      avatar.mv('./public/images/tagImg' + yoloImg.name);
+
+
+      res.send({
+        status: true,
+        message: 'File is uploaded',
+        data: {
+          name: yoloImg.name,
+          mimetype: yoloImg.mimetype,
+          size: yoloImg.size
+        }
+      });
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 module.exports = router;
