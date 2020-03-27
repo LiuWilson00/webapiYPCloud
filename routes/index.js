@@ -8,6 +8,7 @@ router.get('/', function (req, res, next) {
 
 
 router.post('/upload-avatar', async (req, res) => {
+  console.log(req.files)
   try {
     if (!req.files) {
       res.send({
@@ -38,6 +39,7 @@ router.post('/upload-avatar', async (req, res) => {
 });
 
 router.post('/upload-yolo', async (req, res) => {
+
   try {
     if (!req.files) {
       res.send({
@@ -47,10 +49,10 @@ router.post('/upload-yolo', async (req, res) => {
     } else {
 
       let yoloImg = req.files.yoloImg;
+      console.log("1", yoloImg)
 
-
-      avatar.mv('./public/images/yolo/' + yoloImg.name);
-
+      yoloImg.mv('./public/images/yolo/' + yoloImg.name);
+      console.log("move")
 
       res.send({
         status: true,
@@ -79,7 +81,7 @@ router.post('/upload-tagImg', async (req, res) => {
       let yoloImg = req.files.yoloImg;
 
 
-      avatar.mv('./public/images/tagImg/' + yoloImg.name);
+      yoloImg.mv('./public/images/tagImg/' + yoloImg.name);
 
 
       res.send({
