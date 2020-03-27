@@ -49,7 +49,7 @@ router.post('/upload-yolo', async (req, res) => {
       let yoloImg = req.files.yoloImg;
 
 
-      avatar.mv('./public/images/yolo' + yoloImg.name);
+      avatar.mv('./public/images/yolo/' + yoloImg.name);
 
 
       res.send({
@@ -79,7 +79,7 @@ router.post('/upload-tagImg', async (req, res) => {
       let yoloImg = req.files.yoloImg;
 
 
-      avatar.mv('./public/images/tagImg' + yoloImg.name);
+      avatar.mv('./public/images/tagImg/' + yoloImg.name);
 
 
       res.send({
