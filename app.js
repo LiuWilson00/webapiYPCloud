@@ -12,8 +12,40 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const _ = require('lodash');
 
-
+const { ExpressPeerServer } = require('peer');
 var app = express();
+
+
+//peer start
+
+const server = app.listen(9000);
+
+// var options = {
+//   //webrtc要求SSL安全傳輸,所以要設定證書
+//   key: fs.readFileSync('key/server.key'),
+//   cert: fs.readFileSync('key/server.crt')
+// }
+
+
+const peerServer = ExpressPeerServer(server, {
+  debug: true,
+  path: '/myapp',
+  // ssl: options
+});
+
+app.use('/peer', peerServer);
+
+peerServer.on('connection', (id) => {
+  console.log(`A client connected : ${id}`);
+})
+
+peerServer.on('disconnect', (id) => {
+  console.log(`A client say ~ bye bye : ${id}`);
+});
+
+
+//peer end
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
